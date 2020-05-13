@@ -1,30 +1,30 @@
 사회A
-+https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=169483
+https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=169483
 사회B
-+https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=169485
+https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=169485
 과학
-+https://hoc12.ebssw.kr/tjsdlsxhdrhk
+https://hoc12.ebssw.kr/tjsdlsxhdrhk
 영어
-+https://hoc12.ebssw.kr/sunineng1
+https://hoc12.ebssw.kr/sunineng1
 국어
-+https://hoc12.ebssw.kr/2020suningokorean11
+https://hoc12.ebssw.kr/2020suningokorean11
 수학
-+https://hoc12.ebssw.kr/mathsunin1
+https://hoc12.ebssw.kr/mathsunin1
 진로
-+https://hoc12.ebssw.kr/suninjinro
+https://hoc12.ebssw.kr/suninjinro
 정보
-+https://hoc12.ebssw.kr/2020sunininfo1
-+https://classroom.google.com/u/0/h
+https://hoc12.ebssw.kr/2020sunininfo1
+https://classroom.google.com/u/0/h
 체육
-+https://hoc12.ebssw.kr/1gkrsuscpdbrdldlstns
+https://hoc12.ebssw.kr/1gkrsuscpdbrdldlstns
 지식
-+https://hoc12.ebssw.kr/suninwlwo
+https://hoc12.ebssw.kr/suninwlwo
 생과
-+https://hoc12.ebssw.kr/suninbioscience1
+https://hoc12.ebssw.kr/suninbioscience1
 음악
-+https://hoc12.ebssw.kr/suninmusic1
+https://hoc12.ebssw.kr/suninmusic1
 출석
-+https://hoc12.ebssw.kr/2020suningo103/hmpg/hmpgBbsListView.do?menuSn=383532&bbsId=BBSID_000384753
+https://hoc12.ebssw.kr/2020suningo103/hmpg/hmpgAlctcrListView.do?menuSn=349805
 
 사회A 과학 영어 국어 사회B 수학 진로
 수학 영어 정보 체육 과학 지식 국어
