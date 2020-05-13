@@ -21,13 +21,37 @@ def FindSubjectList(str):
         if(x[0] == str):
             return x
     return ""
+def LinkOpenByName(st, subjectnum):
+    linkNow = FindSubjectList(st)
+    print(str(subjectnum) + '교시 : ' + st)
+    linknum = 0
+    for i in linkNow[1:]:
+        if linknum == 0:
+            print('링크 주소 : ' + i)
+            linknum = 1
+        else:
+            print('            ' + i)
+    if configs[2] == 'N': y = input('링크로 들어가시려면 Enter 키를 눌러주세요...')
+    else: print('링크를 엽니다...')
+    linknum = 1
+    while(True):
+        webbrowser.open(linkNow[linknum])
+        if linknum + 1 == len(linkNow): break
+        linknum += 1
+        if configs[2] == 'N' and configs[3] == 'N': y = input('다음 링크로 들어가시려면 Enter 키를 눌러주세요...')
 
 days = ['월','화','수','목','금','토','일']
 my_path = os.path.abspath(os.path.dirname(__file__))
+path = os.path.join(my_path, 'Config.txt')
+configfile = open(path,'r')
+configs = configfile.readlines()
+configs = [RemoveEnter(ss)[-1] for ss in configs]
+configfile.close()
 path = os.path.join(my_path, 'ClassInfo.txt')
 classfile = open(path,'r')
 
 lines = classfile.readlines()
+classfile.close()
 filterdlines = []
 subject = []
 splitscajul = []
@@ -66,12 +90,16 @@ for x in filterdlines: # 파일 불러오기
             print('요일이 너무 많습니다. 7개를 초과하는 요일 테이터는 무시됩니다.')
             break
         splitscajul.append(x.split())
-print('데이터가 확인되었습니다 : ')
-for x in subject:
-    print(x)
-for x in splitscajul:
-    print(x)
-classfile.close()
+if configs[0] == configs[1] == 'N':
+    print('데이터가 확인되었습니다.')
+else:
+    print('데이터가 확인되었습니다 : ')
+if configs[0] == 'Y': 
+    for x in subject:
+        print(x)
+if configs[1] == 'Y': 
+    for x in splitscajul:
+        print(x)
 
 print('오늘의 요일을 확인합니다 : ')
 if(time.localtime().tm_wday > len(splitscajul)): # 선언한 요일 변수 개수와 요일을 비교.
@@ -80,24 +108,10 @@ elif(len(splitscajul[time.localtime().tm_wday]) == 0):
     print('오늘은 ' + days[time.localtime().tm_wday] + '요일 입니다. 오늘은 수업이 없습니다.')
 else:
     print('오늘은 ' + days[time.localtime().tm_wday] + '요일 입니다.')
-
+    if configs[4] == 'Y': LinkOpenByName('출석', 0) # 5번 설정이 Y면 출석 링크 열
     subnum = 0 # 시간을 나타내는 변수. 1교시에 1, 2교시에 2..
     for x in splitscajul[time.localtime().tm_wday]: # 오늘의 스케줄을 반복.
-        linkNow = FindSubjectList(x)
         subnum += 1
-        print(str(subnum) + '교시 : ' + x)
-        linknum = 0
-        for i in linkNow[1:]:
-            if linknum == 0:
-                print('링크 주소 : ' + i)
-                linknum = 1
-            else:
-                print('            ' + i)
-        y = input('링크로 들어가시려면 Enter 키를 눌러주세요...')
-        linknum = 1
-        while(True):
-            webbrowser.open(linkNow[linknum])
-            if linknum + 1 == len(linkNow): break
-            linknum += 1
+        LinkOpenByName(x,subnum)
 
 y = input('오늘의 페이지는 여기까지입니다. 그만하시려면 Enter 키를 눌러주세요...')

@@ -23,6 +23,8 @@
 +https://hoc12.ebssw.kr/suninbioscience1
 음악
 +https://hoc12.ebssw.kr/suninmusic1
+출석
++https://hoc12.ebssw.kr/2020suningo103/hmpg/hmpgBbsListView.do?menuSn=383532&bbsId=BBSID_000384753
 
 사회A 과학 영어 국어 사회B 수학 진로
 수학 영어 정보 체육 과학 지식 국어
