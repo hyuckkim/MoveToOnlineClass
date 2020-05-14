@@ -111,7 +111,7 @@ for x in filterdlines: # 파일 불러오기
     elif(phase == 2): # 시간표 입력
         dayofweek += 1 # 단순히 시간표의 요일 개수만을 받는 변수.
         if dayofweek > len(DAYS): 
-            print('요일이 너무 많습니다. ' + int(len(DAYS) +'개를 초과하는 요일 테이터는 무시됩니다.')
+            print('요일이 너무 많습니다. ' + str(len(DAYS)) +'개를 초과하는 요일 테이터는 무시됩니다.')
             break
         splitscajul.append(x.split())
 if configs[5] == 'Y': splitscajul.append(input('오늘의 시간표를 입력해주세요 : ').split())
