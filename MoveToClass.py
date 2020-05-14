@@ -38,28 +38,40 @@ def LinkOpenByName(st, subjectnum):
 
 #Const 변수 설정.
 DAYS = ('월','화','수','목','금','토','일')
-my_path = os.path.abspath(os.path.dirname(__file__))
+MY_PATH = os.path.abspath(os.path.dirname(__file__))
 
 # Config 파일 관리.
-path = os.path.join(my_path, 'Config.txt')
+path = os.path.join(MY_PATH, 'Config.txt')
 configfile = open(path,'r')
 originalconfigs = configfile.readlines()
-configs = [RemoveEnter(ss)[-1] for ss in originalconfigs]
+configs = [RemoveEnter(ss).split(' : ')[-1] for ss in originalconfigs]
 configfile.close()
 
+# 설정 커스터마이징 설정.
 conutilint = 0
-if configs[-1] == 'Y':
+conutilinn = 0
+if configs[-1] == 'Y': # 마지막 설정이 '예' 일때 (모든 설정을 직접 설정할 때)
     for x in originalconfigs[:-1]:
         while True:
             configtemp = input(str(x.split(' : ')[:-1]) + ' (Y 또는 N) : ')
-            if(configtemp == 'Y' or configtemp == 'N'):
+            if(configtemp == 'Y' or configtemp == 'N'): # Y나 N을 써야 나갈 수 있음.
                 configs[conutilint] = configtemp
                 break
         conutilint += 1
-        
+elif configs[-1] != 'N': # 마지막 설정이 '아니오' 가 아닐 때 (몇몇 설정을 직접 설정할 때)
+    tempconnumbers = [int(num) for num in configs[-1].split()] # 설정 번호 숫자들 직접 추출
+    for x in [originalconfigs[num] for num in tempconnumbers]: # 추출된 번호들마다의 문장들로 반복
+        conutilint = tempconnumbers[conutilinn] # 문장 번호 넣기
+        while True:
+            print(configs[-1])
+            configtemp = input(str(x.split(' : ')[:-1]) + ' (Y 또는 N) : ')
+            if(configtemp == 'Y' or configtemp == 'N'): # Y나 N을 써야 나갈 수 있음.
+                configs[conutilint] = configtemp
+                break
+        conutilinn += 1
 
 #ClassInfo 파일 관리.
-path = os.path.join(my_path, 'ClassInfo.txt')
+path = os.path.join(MY_PATH, 'ClassInfo.txt')
 classfile = open(path,'r')
 lines = classfile.readlines()
 classfile.close()
@@ -98,8 +110,8 @@ for x in filterdlines: # 파일 불러오기
                 links = 0
     elif(phase == 2): # 시간표 입력
         dayofweek += 1 # 단순히 시간표의 요일 개수만을 받는 변수.
-        if dayofweek > 7: 
-            print('요일이 너무 많습니다. 7개를 초과하는 요일 테이터는 무시됩니다.')
+        if dayofweek > len(DAYS): 
+            print('요일이 너무 많습니다. ' + int(len(DAYS) +'개를 초과하는 요일 테이터는 무시됩니다.')
             break
         splitscajul.append(x.split())
 if configs[5] == 'Y': splitscajul.append(input('오늘의 시간표를 입력해주세요 : ').split())
