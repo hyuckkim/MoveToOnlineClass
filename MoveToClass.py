@@ -43,9 +43,20 @@ my_path = os.path.abspath(os.path.dirname(__file__))
 # Config 파일 관리.
 path = os.path.join(my_path, 'Config.txt')
 configfile = open(path,'r')
-configs = configfile.readlines()
-configs = [RemoveEnter(ss)[-1] for ss in configs]
+originalconfigs = configfile.readlines()
+configs = [RemoveEnter(ss)[-1] for ss in originalconfigs]
 configfile.close()
+
+conutilint = 0
+if configs[-1] == 'Y':
+    for x in originalconfigs[:-1]:
+        while True:
+            configtemp = input(str(x.split(' : ')[:-1]) + ' (Y 또는 N) : ')
+            if(configtemp == 'Y' or configtemp == 'N'):
+                configs[conutilint] = configtemp
+                break
+        conutilint += 1
+        
 
 #ClassInfo 파일 관리.
 path = os.path.join(my_path, 'ClassInfo.txt')
