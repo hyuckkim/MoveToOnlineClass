@@ -141,7 +141,7 @@ else:
                 timestart = int(input('시작할 시간의 번호를 골라주세요 : '))
                 if timestart < 0:
                     print('번호는 0보다 작지 않은 정수로 입력해 주십시오. ')
-                else break
+                else: break
             except ValueError:
                 print('번호는 0보다 작지 않은 정수로 입력해 주십시오. ')
     else: timestart = 0
