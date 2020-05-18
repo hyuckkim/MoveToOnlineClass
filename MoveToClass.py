@@ -109,10 +109,10 @@ for x in filterdlines: # 파일 불러오기
                 subject.append([x])
                 links = 0
     elif(phase == 2): # 시간표 입력
-        dayofweek += 1 # 단순히 시간표의 요일 개수만을 받는 변수.
         if dayofweek > len(DAYS): 
-            print('요일이 너무 많습니다. ' + str(len(DAYS)) +'개를 초과하는 요일 테이터는 무시됩니다.')
+            print('요일이 너무 많습니다. ' + str(len(DAYS)) + '개를 초과하는 요일 테이터는 무시됩니다.')
             break
+        dayofweek += 1 # 단순히 시간표의 요일 개수만을 받는 변수.
         splitscajul.append(x.split())
 if configs[5] == 'Y': splitscajul.append(input('오늘의 시간표를 입력해주세요 : ').split())
 if configs[0] == configs[1] == 'N':
@@ -135,10 +135,22 @@ elif(len(splitscajul[time.localtime().tm_wday]) == 0): # 요일의 과목 문자
     print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다. 오늘은 수업이 없습니다.')
 else:
     print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다.')
-    if configs[4] == 'Y': LinkOpenByName('출석', 0) # 5번 설정이 Y면 출석 링크 열
+    if configs[6] == 'Y': 
+        while(True):
+            try:
+                timestart = int(input('시작할 시간의 번호를 골라주세요 : '))
+                if timestart < 0:
+                    print('번호는 0보다 작지 않은 정수로 입력해 주십시오. ')
+                else break
+            except ValueError:
+                print('번호는 0보다 작지 않은 정수로 입력해 주십시오. ')
+    else: timestart = 0
+    if configs[4] == 'Y' and timestart == 0: 
+        LinkOpenByName('출석', 0) # 5번 설정이 Y면 출석 링크 열
+        timestart += 1
     subnum = 0 # 시간을 나타내는 변수. 1교시에 1, 2교시에 2..
-    for x in splitscajul[todayint]: # 오늘의 스케줄을 반복.
+    for x in splitscajul[todayint][timestart - 1:]: # 오늘의 스케줄을 반복.
         subnum += 1
-        LinkOpenByName(x,subnum)
+        LinkOpenByName(x,subnum + timestart - 1)
 
 y = input('오늘의 페이지는 여기까지입니다. 그만하시려면 Enter 키를 눌러주세요...')
