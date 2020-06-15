@@ -115,6 +115,8 @@ for x in filterdlines: # 파일 불러오기
         dayofweek += 1 # 단순히 시간표의 요일 개수만을 받는 변수.
         splitscajul.append(x.split())
 if configs[5] == 'Y': splitscajul.append(input('오늘의 시간표를 입력해주세요 : ').split())
+elif configs[6] == 'Y': splitscajul.append([subject[k][0] for k in range(len(subject))])
+print([subject[k][0] for k in range(len(subject))])
 if configs[0] == configs[1] == 'N':
     print('데이터가 확인되었습니다.')
 else:
@@ -125,17 +127,19 @@ if configs[0] == 'Y':
 if configs[1] == 'Y': 
     for x in splitscajul:
         print(x)
-todayint = time.localtime().tm_wday
 if configs[5] == 'Y': 
     todayint = len(splitscajul) - 1
+elif configs[6] == 'Y':
+    todayint = len(splitscajul) - 1
+else: todayint = time.localtime().tm_wday
 print('오늘의 요일을 확인합니다 : ')
-if(configs[5] == 'N' and time.localtime().tm_wday > len(splitscajul)): # 선언한 요일 변수 개수와 요일을 비교.
+if((configs[5] == 'N' and configs[6] == 'N') and time.localtime().tm_wday > len(splitscajul)): # 선언한 요일 변수 개수와 요일을 비교.
     print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다. 오늘은 수업이 없습니다.')
-elif(len(splitscajul[time.localtime().tm_wday]) == 0): # 요일의 과목 문자열 길이가 0이면.
+elif(len(splitscajul[todayint]) == 0): # 요일의 과목 문자열 길이가 0이면.
     print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다. 오늘은 수업이 없습니다.')
 else:
     print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다.')
-    if configs[6] == 'Y': 
+    if configs[7] == 'Y': 
         while(True):
             try:
                 timestart = int(input('시작할 시간의 번호를 골라주세요 : '))

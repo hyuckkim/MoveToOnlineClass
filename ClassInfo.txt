@@ -25,9 +25,11 @@ https://hoc12.ebssw.kr/suninbioscience1
 https://hoc12.ebssw.kr/suninmusic1
 출석
 https://hoc12.ebssw.kr/2020suningo103/hmpg/hmpgAlctcrListView.do?menuSn=349805
+동아리
+https://hangouts.google.com/?authuser=1
 
 사회A 과학 영어 국어 사회B 수학 진로
 수학 영어 정보 체육 과학 지식 국어
 사회B 생과 생과 음악 국어
 영어 수학 생과 음악 정보 과학 사회A
-국어 영어 과학 체육 수학
+국어 영어 과학 체육 수학 진로
