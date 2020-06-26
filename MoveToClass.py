@@ -18,10 +18,10 @@ def FindSubjectList(str):
             return x
     return ""
 def LinkOpenByName(st, subjectnum):
-    linkNow = FindSubjectList(st)
+    linkNow = FindSubjectList(st) # linkNow는 이제 string list, 0번 항목은 과목이름, 1번 항목부터는 과목 링크.
     print(str(subjectnum) + '교시 : ' + st)
     linknum = 0
-    for i in linkNow[1:]:
+    for i in linkNow[1:]: # 모든 링크 표시를 위한 반복.
         if linknum == 0:
             print('링크 주소 : ' + i)
             linknum = 1
@@ -30,9 +30,9 @@ def LinkOpenByName(st, subjectnum):
     if configs[2] == 'N': y = input('링크로 들어가시려면 Enter 키를 눌러주세요...')
     else: print('링크를 엽니다...')
     linknum = 1
-    while(True):
+    while(True): # 한 시간 안에 여러 링크가 있을 경우를 위한 반복.
         webbrowser.open(linkNow[linknum])
-        if linknum + 1 == len(linkNow): break
+        if linknum + 1 == len(linkNow): break # 모든 링크를 열었을 때 나가기.
         linknum += 1
         if configs[2] == 'N' and configs[3] == 'N': y = input('다음 링크로 들어가시려면 Enter 키를 눌러주세요...')
 
@@ -151,7 +151,7 @@ else:
     else: timestart = 0
     if configs[4] == 'Y' and timestart == 0: 
         LinkOpenByName('출석', 0) # 5번 설정이 Y면 출석 링크 열
-        timestart += 1
+    timestart += 1
     subnum = 0 # 시간을 나타내는 변수. 1교시에 1, 2교시에 2..
     for x in splitscajul[todayint][timestart - 1:]: # 오늘의 스케줄을 반복.
         subnum += 1
