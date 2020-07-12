@@ -151,7 +151,7 @@ else:
     else: timestart = 0
     if configs[4] == 'Y' and timestart == 0: 
         LinkOpenByName('출석', 0) # 5번 설정이 Y면 출석 링크 열
-    timestart += 1
+        timestart += 1
     subnum = 0 # 시간을 나타내는 변수. 1교시에 1, 2교시에 2..
     for x in splitscajul[todayint][timestart - 1:]: # 오늘의 스케줄을 반복.
         subnum += 1
