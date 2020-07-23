@@ -122,11 +122,19 @@ if configs[0] == configs[1] == 'N':
 else:
     print('데이터가 확인되었습니다 : ')
 if configs[0] == 'Y': 
+    u = 0
+    bowlingString = ''
     for x in subject:
-        print(x)
+        u += 1
+        bowlingString += (str(u) + ' : ' + x[0] + '  ')
+    print(bowlingString)
 if configs[1] == 'Y': 
+    u = 0
+    bowlingString = ''
     for x in splitscajul:
-        print(x)
+        u += 1
+        bowlingString += (str(u) + ' : ' + x[0]+ '  ')
+    print(bowlingString)
 if configs[5] == 'Y': 
     todayint = len(splitscajul) - 1
 elif configs[6] == 'Y':
