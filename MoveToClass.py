@@ -116,7 +116,6 @@ for x in filterdlines: # 파일 불러오기
         splitscajul.append(x.split())
 if configs[5] == 'Y': splitscajul.append(input('오늘의 시간표를 입력해주세요 : ').split())
 elif configs[6] == 'Y': splitscajul.append([subject[k][0] for k in range(len(subject))])
-print([subject[k][0] for k in range(len(subject))])
 if configs[0] == configs[1] == 'N':
     print('데이터가 확인되었습니다.')
 else:
@@ -133,7 +132,7 @@ if configs[1] == 'Y':
     bowlingString = ''
     for x in splitscajul:
         u += 1
-        bowlingString += (str(u) + ' : ' + x[0]+ '  ')
+        bowlingString += (str(u) + '교시 : ' + x[0]+ '  ')
     print(bowlingString)
 if configs[5] == 'Y': 
     todayint = len(splitscajul) - 1
