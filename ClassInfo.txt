@@ -14,7 +14,7 @@ https://hoc12.ebssw.kr/mathsunin1
 https://hoc12.ebssw.kr/suninjinro
 정보
 https://hoc12.ebssw.kr/2020sunininfo1
-https://classroom.google.com/u/1/h
+https://classroom.google.com/u/0/h
 체육
 https://hoc12.ebssw.kr/1gkrsuscpdbrdldlstns
 지식
@@ -23,6 +23,8 @@ https://hoc12.ebssw.kr/suninwlwo
 https://hoc12.ebssw.kr/suninbioscience1
 음악
 https://hoc12.ebssw.kr/suninmusic1
+실험
+https://hoc12.ebssw.kr/sciencelabsunin
 출석
 https://hoc12.ebssw.kr/2020suningo103/hmpg/hmpgAlctcrListView.do?menuSn=349805
 동아리
@@ -30,7 +32,7 @@ https://hoc12.ebssw.kr/2020sunininfo5
 https://classroom.google.com/u/1/h
 
 사회A 영어 정보 사회B 수학 과학 국어
-사회A 영어 수학 체육 과학 국어
+지식 사회A 영어 수학 체육 과학 국어
 과학 사회B 영어 음악 진로
 음악 영어 통과 수학 국어
-수학 체육 국어 정보 생과
+수학 체육 국어 실험 실험 정보 생과

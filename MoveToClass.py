@@ -130,9 +130,9 @@ if configs[0] == 'Y':
 if configs[1] == 'Y': 
     u = 0
     bowlingString = ''
-    for x in splitscajul:
+    for x in splitscajul[time.localtime().tm_wday]:
         u += 1
-        bowlingString += (str(u) + '교시 : ' + x[0]+ '  ')
+        bowlingString += (str(u) + '교시 : ' + x+ '  ')
     print(bowlingString)
 if configs[5] == 'Y': 
     todayint = len(splitscajul) - 1
