@@ -129,6 +129,7 @@ for x in filterdlines: # 파일 불러오기
                 obsolute = 0
                 subject.append([x])
                 links = 0
+splitscajul.append([subject[k][0] for k in range(len(subject))])
 print('데이터가 확인되었습니다 : ')
 bowlingString = ''
 u = 0
