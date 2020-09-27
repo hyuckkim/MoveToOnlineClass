@@ -1,0 +1,5 @@
+https://hoc12.ebssw.kr/sso/loginView.do
+/home/hyuck/geckodriver
+firefox
+monkey7410
+monkey*7410

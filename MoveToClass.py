@@ -1,8 +1,27 @@
 # coding=utf-8
 import os.path
 import time
+import re
 import webbrowser
+from selenium import webdriver
+from bs4 import BeautifulSoup
+    
+def login():
+    driver.get(site)
+    driver.implicitly_wait(10)
+    driver.find_element_by_xpath('//*[@id="j_username"]').send_keys(studentid);
+    driver.find_element_by_xpath('//*[@id="j_password"]').send_keys(studentpassword);
+    driver.find_element_by_xpath('/html/body/div/div[2]/div/form/div/div[1]/fieldset/div/button').click();
+    alert = driver.switch_to_alert()
+    alert.accept()
 
+def CheckStatus(link):
+    driver.execute_script('window.open("about:blank", "_blank");')
+    driver.switch_to_window(driver.window_handles[-1])
+    driver.get(link)
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
+    for x in soup.select('li > span:nth-child(2)')[1:]:
+        FindResult(checkResult[-1],re.findall(regex, str(x)))
 def RemoveEnter(str):
     if(str[-1] == '\n'):
         return str[:-1]
@@ -17,6 +36,13 @@ def FindSubjectList(str):
         if(x[0] == str):
             return x
     return ""
+def FindResult(li, st):
+    for x in li:
+        if(x[0] == st):
+            x[1] += 1
+            return
+    li.append([st,1])
+    
 def LinkOpenByName(st, subjectnum):
     linkNow = FindSubjectList(st) # linkNow는 이제 string list, 0번 항목은 과목이름, 1번 항목부터는 과목 링크.
     print(str(subjectnum) + '교시 : ' + st)
@@ -27,48 +53,19 @@ def LinkOpenByName(st, subjectnum):
             linknum = 1
         else:
             print('            ' + i)
-    if configs[2] == 'N': y = input('링크로 들어가시려면 Enter 키를 눌러주세요...')
-    else: print('링크를 엽니다...')
     linknum = 1
+
+    checkResult.append([st])
     while(True): # 한 시간 안에 여러 링크가 있을 경우를 위한 반복.
-        webbrowser.open(linkNow[linknum])
+        print(linkNow)
+        CheckStatus(linkNow[linknum])
         if linknum + 1 == len(linkNow): break # 모든 링크를 열었을 때 나가기.
         linknum += 1
-        if configs[2] == 'N' and configs[3] == 'N': y = input('다음 링크로 들어가시려면 Enter 키를 눌러주세요...')
 
 #Const 변수 설정.
 DAYS = ('월','화','수','목','금','토','일')
 MY_PATH = os.path.abspath(os.path.dirname(__file__))
-
-# Config 파일 관리.
-path = os.path.join(MY_PATH, 'Config.txt')
-configfile = open(path,'r')
-originalconfigs = configfile.readlines()
-configs = [RemoveEnter(ss).split(' : ')[-1] for ss in originalconfigs]
-configfile.close()
-
-# 설정 커스터마이징 설정.
-conutilint = 0
-conutilinn = 0
-if configs[-1] == 'Y': # 마지막 설정이 '예' 일때 (모든 설정을 직접 설정할 때)
-    for x in originalconfigs[:-1]:
-        while True:
-            configtemp = input(str(x.split(' : ')[:-1]) + ' (Y 또는 N) : ')
-            if(configtemp == 'Y' or configtemp == 'N'): # Y나 N을 써야 나갈 수 있음.
-                configs[conutilint] = configtemp
-                break
-        conutilint += 1
-elif configs[-1] != 'N': # 마지막 설정이 '아니오' 가 아닐 때 (몇몇 설정을 직접 설정할 때)
-    tempconnumbers = [int(num) for num in configs[-1].split()] # 설정 번호 숫자들 직접 추출
-    for x in [originalconfigs[num] for num in tempconnumbers]: # 추출된 번호들마다의 문장들로 반복
-        conutilint = tempconnumbers[conutilinn] # 문장 번호 넣기
-        while True:
-            print(configs[-1])
-            configtemp = input(str(x.split(' : ')[:-1]) + ' (Y 또는 N) : ')
-            if(configtemp == 'Y' or configtemp == 'N'): # Y나 N을 써야 나갈 수 있음.
-                configs[conutilint] = configtemp
-                break
-        conutilinn += 1
+regex = r'[가-힇]+'
 
 #ClassInfo 파일 관리.
 path = os.path.join(MY_PATH, 'ClassInfo.txt')
@@ -79,6 +76,30 @@ classfile.close()
 filterdlines = []
 subject = []
 splitscajul = []
+subjectResult = []
+checkResult = []
+
+#config 파일 관리
+configpath = os.path.join(MY_PATH, 'config.txt')
+configfile = open(configpath,'r',encoding='UTF-8')
+originalconfigs = [RemoveEnter(x) for x in configfile.readlines()]
+
+site = originalconfigs[0]
+webroute = originalconfigs[1]
+browser = originalconfigs[2]
+studentid = originalconfigs[3]
+studentpassword = originalconfigs[4]
+
+if browser == "chrome":
+    driver = webdriver.Chrome(webroute)
+elif browser =="edge":
+    driver = webdriver.Edge(webroute)
+elif browser =="firefox":
+    driver = webdriver.Firefox(executable_path=webroute)
+elif browser =="safari":
+    driver = webdriver.Safari(webroute)
+
+login();
 
 for x in lines:
     filterdlines.append(RemoveEnter(x))
@@ -108,61 +129,28 @@ for x in filterdlines: # 파일 불러오기
                 obsolute = 0
                 subject.append([x])
                 links = 0
-    elif(phase == 2): # 시간표 입력
-        if dayofweek > len(DAYS): 
-            print('요일이 너무 많습니다. ' + str(len(DAYS)) + '개를 초과하는 요일 테이터는 무시됩니다.')
-            break
-        dayofweek += 1 # 단순히 시간표의 요일 개수만을 받는 변수.
-        splitscajul.append(x.split())
-if configs[5] == 'Y': splitscajul.append(input('오늘의 시간표를 입력해주세요 : ').split())
-elif configs[6] == 'Y': splitscajul.append([subject[k][0] for k in range(len(subject))])
-print([subject[k][0] for k in range(len(subject))])
-if configs[0] == configs[1] == 'N':
-    print('데이터가 확인되었습니다.')
-else:
-    print('데이터가 확인되었습니다 : ')
-if configs[0] == 'Y': 
-    u = 0
-    bowlingString = ''
-    for x in subject:
-        u += 1
-        bowlingString += (str(u) + ' : ' + x[0] + '  ')
-    print(bowlingString)
-if configs[1] == 'Y': 
-    u = 0
-    bowlingString = ''
-    for x in splitscajul:
-        u += 1
-        bowlingString += (str(u) + ' : ' + x[0]+ '  ')
-    print(bowlingString)
-if configs[5] == 'Y': 
-    todayint = len(splitscajul) - 1
-elif configs[6] == 'Y':
-    todayint = len(splitscajul) - 1
-else: todayint = time.localtime().tm_wday
-print('오늘의 요일을 확인합니다 : ')
-if((configs[5] == 'N' and configs[6] == 'N') and time.localtime().tm_wday > len(splitscajul)): # 선언한 요일 변수 개수와 요일을 비교.
-    print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다. 오늘은 수업이 없습니다.')
-elif(len(splitscajul[todayint]) == 0): # 요일의 과목 문자열 길이가 0이면.
-    print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다. 오늘은 수업이 없습니다.')
-else:
-    print('오늘은 ' + DAYS[time.localtime().tm_wday] + '요일 입니다.')
-    if configs[7] == 'Y': 
-        while(True):
-            try:
-                timestart = int(input('시작할 시간의 번호를 골라주세요 : '))
-                if timestart < 0:
-                    print('번호는 0보다 작지 않은 정수로 입력해 주십시오. ')
-                else: break
-            except ValueError:
-                print('번호는 0보다 작지 않은 정수로 입력해 주십시오. ')
-    else: timestart = 0
-    if configs[4] == 'Y' and timestart == 0: 
-        LinkOpenByName('출석', 0) # 5번 설정이 Y면 출석 링크 열
-        timestart += 1
-    subnum = 0 # 시간을 나타내는 변수. 1교시에 1, 2교시에 2..
-    for x in splitscajul[todayint][timestart - 1:]: # 오늘의 스케줄을 반복.
-        subnum += 1
-        LinkOpenByName(x,subnum + timestart - 1)
-
-y = input('오늘의 페이지는 여기까지입니다. 그만하시려면 Enter 키를 눌러주세요...')
+print('데이터가 확인되었습니다 : ')
+bowlingString = ''
+u = 0
+for x in subject:
+    u += 1
+    bowlingString += (('' if u == 1 else ', ') + x[0])
+print(bowlingString)
+u = 0
+bowlingString = ''
+for x in splitscajul:
+    u += 1
+    bowlingString += (str(u) + '교시 : ' + x[0]+ '  ')
+print(bowlingString)
+timestart = 1
+subnum = 0 # 시간을 나타내는 변수. 1교시에 1, 2교시에 2..
+print(splitscajul)
+for x in splitscajul[timestart - 1:]: # 오늘의 스케줄을 반복.
+    subnum += 1
+    LinkOpenByName(x,subnum + timestart - 1)
+print(checkResult)
+q = 0
+for x in splitscajul[timestart - 1:]:
+    print(checkResult[q])
+    q += 1
+y = input('press any key to continue...')

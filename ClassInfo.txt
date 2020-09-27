@@ -1,36 +1,28 @@
 사회A
-https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=169483
+https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=173382
 사회B
-https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=169485
+https://hoc12.ebssw.kr/jaeho1/hmpg/hmpgAlctcrDetailView.do?menuSn=360545&alctcrSn=173383
 과학
-https://hoc12.ebssw.kr/tjsdlsxhdrhk
+https://hoc12.ebssw.kr/tjsdlsxhdrhk/hmpg/hmpgAlctcrDetailView.do?menuSn=286537&alctcrSn=173525
 영어
-https://hoc12.ebssw.kr/sunineng1
+https://hoc12.ebssw.kr/sunineng1/hmpg/hmpgAlctcrDetailView.do?menuSn=350692&alctcrSn=173333
 국어
-https://hoc12.ebssw.kr/2020suningokorean11
+https://hoc12.ebssw.kr/2020suningokorean11/hmpg/hmpgAlctcrDetailView.do?menuSn=347528&alctcrSn=173324
 수학
-https://hoc12.ebssw.kr/mathsunin1
+https://hoc12.ebssw.kr/mathsunin1/hmpg/hmpgAlctcrDetailView.do?menuSn=321802&alctcrSn=173321
 진로
-https://hoc12.ebssw.kr/suninjinro
+https://hoc12.ebssw.kr/suninjinro/hmpg/hmpgLctrumView.do?menuSn=344520&alctcrSn=168910&stepSn=168149&tabType=lctreList&sessSn=
 정보
-https://hoc12.ebssw.kr/2020sunininfo1
-https://classroom.google.com/u/1/h
+https://hoc12.ebssw.kr/2020sunininfo1/hmpg/hmpgLctrumView.do?menuSn=353495&alctcrSn=170211&stepSn=169449&tabType=lctreList&sessSn=
 체육
-https://hoc12.ebssw.kr/1gkrsuscpdbrdldlstns
-지식
-https://hoc12.ebssw.kr/suninwlwo
+https://hoc12.ebssw.kr/1gkrsuscpdbrdldlstns/hmpg/hmpgLctrumView.do?menuSn=344132&alctcrSn=170640&stepSn=169879&tabType=lctreList&sessSn=
 생과
-https://hoc12.ebssw.kr/suninbioscience1
+https://hoc12.ebssw.kr/suninbioscience1/hmpg/hmpgLctrumView.do?menuSn=334317&alctcrSn=169471&stepSn=168710&tabType=lctreList&sessSn=
 음악
-https://hoc12.ebssw.kr/suninmusic1
-출석
-https://hoc12.ebssw.kr/2020suningo103/hmpg/hmpgAlctcrListView.do?menuSn=349805
-동아리
-https://hoc12.ebssw.kr/2020sunininfo5
-https://classroom.google.com/u/1/h
+https://hoc12.ebssw.kr/suninmusic1/hmpg/hmpgLctrumView.do?menuSn=343642&alctcrSn=154740&stepSn=153979&tabType=lctreList&sessSn=
 
-사회A 과학 영어 국어 사회B 수학 진로
-수학 영어 정보 체육 과학 지식 국어
-사회B 생과 생과 음악 국어
-영어 수학 생과 음악 정보 과학 사회A
-국어 영어 과학 체육 수학 진로
+사회A 영어 정보 사회B 수학 과학 국어
+사회A 영어 수학 체육 과학 국어
+과학 사회B 영어 음악 진로
+음악 영어 통과 수학 국어
+수학 체육 국어 정보 생과
